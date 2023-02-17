@@ -1,13 +1,13 @@
-terraform {
-  required_version = ">= 0.12.26"
+resource "aws_s3_bucket" "b" {
+  bucket = "mccloman-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
 }
 
-variable "subject" {
-   type = string
-   default = "World"
-   description = "Subject to hello"
-}
-
-output "hello_world" {
-  value = "Hello, ${var.subject}!"
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
 }
