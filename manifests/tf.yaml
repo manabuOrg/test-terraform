@@ -3,6 +3,8 @@ kind: GitRepository
 metadata:
   name: helloworld
   namespace: flux-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
 spec:
   secretRef:
     name: github-token
