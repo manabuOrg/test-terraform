@@ -1,4 +1,13 @@
-resource "time_sleep" "wait_60_seconds" {
-  create_duration = "60m"
-  destroy_duration = "2s"
+resource "aws_s3_bucket" "b" {
+  bucket = "mccloman-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
 }
