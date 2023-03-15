@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "time_sleep" "wait_seconds" {
   create_duration = var.duration
-  destroy_duration = "180s"
+  destroy_duration = var.duration
 }
 
 resource "aws_s3_bucket" "example-bucket" {
