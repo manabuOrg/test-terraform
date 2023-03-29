@@ -13,5 +13,5 @@ variable "region" {
 variable "duration" {
   description = "duration to wait in seconds"
   type        = string
-  default     = "60s"
+  default     = "30s"
 }
