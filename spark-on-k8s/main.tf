@@ -12,10 +12,6 @@ module "eks_blueprints" {
 
   cluster_endpoint_private_access = true # if true, Kubernetes API requests within your cluster's VPC (such as node to control plane communication) use the private VPC endpoint
   cluster_endpoint_public_access  = true # if true, Your cluster API server is accessible from the internet. You can, optionally, limit the CIDR blocks that can access the public endpoint.
-  
-  depends_on = [
-    module.vpc
-  ]
 
   #---------------------------------------------------------------
   # Note: This can further restricted to specific required for each Add-on and your application

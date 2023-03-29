@@ -3,6 +3,8 @@
 read -p "Enter the region: " region
 export AWS_DEFAULT_REGION=$region
 
+terraform init
+
 # List of Terraform modules to apply in sequence
 targets=(
   "module.vpc"
