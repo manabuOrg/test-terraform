@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -p "Enter the region: " region
-export AWS_DEFAULT_REGION=$region
+
+export AWS_DEFAULT_REGION=us-west-2
 
 terraform init
 
