@@ -1,20 +1,15 @@
 data "aws_eks_cluster_auth" "this" {
-  name = module.eks_blueprints.eks_cluster_id
+  name = module.eks.cluster_name
+}
+
+data "aws_ecrpublic_authorization_token" "token" {
+  provider = aws.ecr
 }
 
 data "aws_availability_zones" "available" {}
-
 data "aws_region" "current" {}
-
 data "aws_caller_identity" "current" {}
-
 data "aws_partition" "current" {}
-
-data "aws_secretsmanager_secret_version" "admin_password_version" {
-  secret_id = aws_secretsmanager_secret.grafana.id
-
-  depends_on = [aws_secretsmanager_secret_version.grafana]
-}
 
 #---------------------------------------------------------------
 # Example IAM policy for Spark job execution
@@ -45,27 +40,6 @@ data "aws_iam_policy_document" "spark_operator" {
       "logs:DescribeLogGroups",
       "logs:DescribeLogStreams",
       "logs:PutLogEvents",
-    ]
-  }
-}
-
-#---------------------------------------------------------------
-# IAM policy for Spark job execution
-#---------------------------------------------------------------
-data "aws_iam_policy_document" "fluent_bit" {
-  statement {
-    sid       = ""
-    effect    = "Allow"
-    resources = ["arn:${data.aws_partition.current.partition}:s3:::${aws_s3_bucket.this.id}/*"]
-
-    actions = [
-      "s3:ListBucket",
-      "s3:PutObject",
-      "s3:PutObjectAcl",
-      "s3:GetObject",
-      "s3:GetObjectAcl",
-      "s3:DeleteObject",
-      "s3:DeleteObjectVersion"
     ]
   }
 }
