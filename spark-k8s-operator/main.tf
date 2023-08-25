@@ -21,8 +21,6 @@ module "eks" {
 
   cluster_name    = local.name
   cluster_version = var.eks_cluster_version
-  create_kms_key = false
-  cluster_encryption_config = {}
 
   cluster_endpoint_public_access = true
 
